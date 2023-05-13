@@ -1,32 +1,3 @@
-# FROM node:20-alpine as builder
-
-# WORKDIR /app
-
-# COPY . .
-# RUN npx turbo prune --scope=@personal-site/site
-# RUN cp -R .yarn .yarnrc.yml tsconfig.json out/
-# RUN cd out
-# RUN yarn install
-# RUN yarn turbo run build --filter=@personal-site/site
-# RUN yarn workspaces focus --all --production
-# RUN rm -rf node_modules/.cache .yarn/cache apps/site/.next/cache
-
-
-# FROM node:20-alpine as app
-
-# ENV NODE_ENV=production
-# WORKDIR /app
-# COPY --chown=node:node --from=builder /app/out .
-
-# WORKDIR /app/site/web-server
-# USER 1000
-
-# CMD ["yarn", "start"]
-
-
-
-
-
 FROM node:20-alpine AS base
 
 # This Dockerfile is copy-pasted into our main docs at /docs/handbook/deploying-with-docker.
