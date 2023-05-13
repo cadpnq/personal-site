@@ -1,0 +1,8 @@
+/**/node_modules
+/packages/**/dist
+/apps/**/dist
+/**/tsconfig.tsbuildinfo
+/**/.env
+/packages/**/.next
+/apps/**/.next
+.yarn
