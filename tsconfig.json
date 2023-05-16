@@ -3,7 +3,6 @@
     "lib": ["es2022"],
     "module": "commonjs",
     "target": "es2022",
-
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -11,13 +10,8 @@
     "moduleResolution": "node",
 
     "paths": {
-      "@parker-takehome/*": ["./packages/*/src/index.ts"]
+      "@personal-site/*": ["./packages/*/src/index.ts"]
     }
   },
-  "references": [
-    {
-      "path": "./packages/api"
-    }
-  ],
   "exclude": ["node_modules", "dist", "*.d.ts"]
 }
