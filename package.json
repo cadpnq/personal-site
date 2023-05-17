@@ -14,7 +14,7 @@
     "lint": "npx eslint .",
     "format": "prettier . --write",
     "prepare": "husky install",
-    "site": "yarn workspace @personal-site/site run",
+    "blog": "yarn workspace blog run",
     "build": "turbo build"
   },
   "devDependencies": {

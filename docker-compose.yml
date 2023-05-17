@@ -1,9 +1,9 @@
 version: '3.9'
 
 services:
-  site:
+  blog:
     build:
       context: .
-      dockerfile: apps/site/Dockerfile
+      dockerfile: apps/blog/Dockerfile
     ports:
       - 3000:3000

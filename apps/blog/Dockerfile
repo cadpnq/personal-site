@@ -11,7 +11,7 @@ RUN apk update
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN turbo prune --scope=@personal-site/site --docker
+RUN turbo prune --scope=blog --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
@@ -37,7 +37,7 @@ COPY tsconfig.json tsconfig.json
 # ARG TURBO_TOKEN
 # ENV TURBO_TOKEN=$TURBO_TOKEN
 
-RUN yarn turbo run build --filter=@personal-site/site...
+RUN yarn turbo run build --filter=blog...
 
 FROM base AS runner
 WORKDIR /app
@@ -47,13 +47,13 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/apps/site/next.config.js .
-COPY --from=installer /app/apps/site/package.json .
+COPY --from=installer /app/apps/blog/next.config.js .
+COPY --from=installer /app/apps/blog/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/site/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/site/.next/static ./apps/site/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/site/public ./apps/site/public
+COPY --from=installer --chown=nextjs:nodejs /app/apps/blog/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/blog/.next/static ./apps/blog/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/blog/public ./apps/blog/public
 
-CMD node apps/site/server.js
+CMD node apps/blog/server.js
